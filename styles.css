@@ -22,7 +22,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--orange); outlin
 .app-shell { min-height: 100vh; }
 .topbar { height: 86px; padding: 0 clamp(22px, 5vw, 76px); display: flex; align-items: center; gap: 40px; border-bottom: 1px solid var(--line); }
 .brand { color: inherit; display: flex; align-items: center; gap: 12px; text-decoration: none; min-width: 210px; }
-.brand-mark { width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid var(--ink); font-size: 22px; }
+.brand-mark { width: 34px; height: 34px; display: block; flex: 0 0 34px; border-radius: 2px; object-fit: cover; }
 .brand strong, .brand small { display: block; letter-spacing: .11em; }
 .brand strong { font-size: 12px; }
 .brand small { margin-top: 3px; font-size: 9px; color: #656357; }
