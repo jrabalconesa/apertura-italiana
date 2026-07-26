@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#151511">
+  <title>La Italiana · Laboratorio de apertura</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="Ir al inicio">
+        <span class="brand-mark">♙</span>
+        <span><strong>LA ITALIANA</strong><small>Laboratorio de apertura</small></span>
+      </a>
+      <nav aria-label="Navegación principal">
+        <button class="nav-link active" data-view="inicio">Inicio</button>
+        <button class="nav-link" data-view="aprende">Aprende</button>
+        <button class="nav-link" data-view="practica">Practica</button>
+        <button class="nav-link" data-view="partidas">Partidas</button>
+      </nav>
+      <div class="progress-pill" aria-label="Progreso del curso">
+        <span id="headerProgress">0/12</span>
+        <span class="progress-track"><span id="headerProgressBar"></span></span>
+      </div>
+    </header>
+
+    <main>
+      <section id="inicio" class="view active">
+        <div class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">CURSO VISUAL · 800–1400 ELO</p>
+            <h1>Juega con un plan.<br><em>No con la memoria.</em></h1>
+            <p class="hero-lead">Domina la Apertura Italiana entendiendo el centro, la seguridad del rey y la coordinación de tus piezas.</p>
+            <div class="hero-actions">
+              <button class="button primary" data-go="aprende">Empezar el recorrido <span>→</span></button>
+              <button class="button ghost" data-go="practica">Ir a practicar</button>
+            </div>
+            <div class="principles">
+              <span><b>01</b> Centro</span><i></i>
+              <span><b>02</b> Desarrollo</span><i></i>
+              <span><b>03</b> Seguridad</span><i></i>
+              <span><b>04</b> Coordinación</span>
+            </div>
+          </div>
+          <div class="hero-board-wrap">
+            <div class="notation-tag">1.e4 e5 2.Cf3 Cc6 3.Ac4</div>
+            <div id="heroBoard" class="chessboard decorative" aria-label="Posición base de la Apertura Italiana"></div>
+            <div class="board-caption"><span>POSICIÓN BASE</span><strong>La diagonal italiana</strong></div>
+          </div>
+        </div>
+
+        <div class="home-grid">
+          <article class="manifesto">
+            <p class="eyebrow">TU MÉTODO</p>
+            <h2>Observar.<br>Comprender.<br>Decidir.</h2>
+            <p>Cada posición responde a una pregunta real de partida. Avanza a tu ritmo y vuelve cuando necesites reforzar una idea.</p>
+          </article>
+          <article class="route-card" data-go="aprende">
+            <span class="route-number">12</span>
+            <div><p>POSICIONES CLAVE</p><h3>Construye la Italiana jugada a jugada</h3></div>
+            <span class="route-arrow">↗</span>
+          </article>
+          <article class="route-card dark" data-go="practica">
+            <span class="route-number">∞</span>
+            <div><p>ENTRENAMIENTO</p><h3>Encuentra la siguiente jugada en el tablero</h3></div>
+            <span class="route-arrow">↗</span>
+          </article>
+          <article class="route-card image-card" data-go="partidas">
+            <span class="route-number">03</span>
+            <div><p>PARTIDAS MODELO</p><h3>Descubre cómo el plan llega al medio juego</h3></div>
+            <span class="route-arrow">↗</span>
+          </article>
+        </div>
+      </section>
+
+      <section id="aprende" class="view">
+        <div class="section-intro">
+          <div><p class="eyebrow">RECORRIDO GUIADO</p><h1>Doce posiciones.<br><em>Un hilo conductor.</em></h1></div>
+          <p>Usa las flechas para recorrer la secuencia. Cuando puedas explicar la idea sin mirar, marca la posición como comprendida.</p>
+        </div>
+        <div class="lesson-layout">
+          <aside class="lesson-index" aria-label="Índice de posiciones">
+            <p>POSICIONES</p>
+            <div id="lessonList"></div>
+          </aside>
+          <div class="lesson-stage">
+            <div class="lesson-board-column">
+              <div id="lessonBoard" class="chessboard" aria-label="Tablero de la lección"></div>
+              <div class="board-controls">
+                <button id="lessonPrev" class="icon-button" aria-label="Jugada anterior">←</button>
+                <span><b id="lessonMoveCounter">0 / 0</b><small id="lessonTurnLabel">Posición inicial</small></span>
+                <button id="lessonNext" class="icon-button" aria-label="Jugada siguiente">→</button>
+              </div>
+            </div>
+            <article class="lesson-copy">
+              <div class="lesson-meta"><span id="lessonCode">ITA-P01</span><span id="lessonStageLabel">FUNDAMENTOS</span></div>
+              <h2 id="lessonTitle"></h2>
+              <div id="lessonNotation" class="notation lesson-sequence" aria-label="Secuencia de jugadas"></div>
+              <p id="lessonExplanation" class="lesson-explanation"></p>
+              <div class="idea-box">
+                <span id="lessonIdeaLabel">IDEA CLAVE</span>
+                <p id="lessonIdea"></p>
+              </div>
+              <button id="completeLesson" class="button primary">Marcar como comprendida</button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="practica" class="view">
+        <div class="section-intro compact">
+          <div><p class="eyebrow">ENTRENAMIENTO ACTIVO</p><h1>Tu turno.<br><em>Encuentra el plan.</em></h1></div>
+          <p>Selecciona una pieza y después su casilla de destino. La pista te recuerda la idea, no la respuesta.</p>
+        </div>
+        <div class="practice-layout">
+          <div class="practice-board-panel">
+            <div class="practice-topline">
+              <span id="practiceCode">ITA-P01</span>
+              <span class="streak">RACHA <b id="streak">0</b></span>
+            </div>
+            <div id="practiceBoard" class="chessboard interactive" aria-label="Tablero de práctica"></div>
+          </div>
+          <article class="practice-copy">
+            <p class="eyebrow" id="practiceLevel">FUNDAMENTOS</p>
+            <h2 id="practiceQuestion">¿Cuál es la continuación?</h2>
+            <p id="practiceContext"></p>
+            <div id="practiceFeedback" class="feedback" aria-live="polite">
+              <span>PISTA</span><p id="practiceHint"></p>
+            </div>
+            <button id="showHint" class="button ghost">Mostrar una pista más clara</button>
+            <button id="nextChallenge" class="button primary" hidden>Siguiente posición →</button>
+            <div class="practice-progress">
+              <span>SESIÓN</span>
+              <div id="challengeDots"></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="partidas" class="view">
+        <div class="section-intro compact">
+          <div><p class="eyebrow">APRENDER DEL EJEMPLO</p><h1>Tres historias.<br><em>Tres maneras de jugar.</em></h1></div>
+          <p>No memorices las jugadas. Observa cuándo cambia la estructura y por qué el plan debe cambiar con ella.</p>
+        </div>
+        <div id="gameTabs" class="game-tabs"></div>
+        <div class="game-layout">
+          <div>
+            <div id="gameBoard" class="chessboard" aria-label="Tablero de partida modelo"></div>
+            <div class="board-controls">
+              <button id="gameStart" class="icon-button" aria-label="Ir al inicio">↤</button>
+              <button id="gamePrev" class="icon-button" aria-label="Jugada anterior">←</button>
+              <span><b id="gameMoveCounter">0 / 0</b><small>Reproduce la partida</small></span>
+              <button id="gameNext" class="icon-button" aria-label="Jugada siguiente">→</button>
+              <button id="gameEnd" class="icon-button" aria-label="Ir al final">↦</button>
+            </div>
+          </div>
+          <article class="game-copy">
+            <p class="eyebrow" id="gameCode">ITA-M01</p>
+            <h2 id="gameTitle"></h2>
+            <p id="gameSubtitle"></p>
+            <div class="move-sheet" id="moveSheet"></div>
+            <div class="comment-box">
+              <span>LECTURA DE LA POSICIÓN</span>
+              <p id="gameComment">Avanza por la partida para descubrir las ideas clave.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>MI REPERTORIO DE AJEDREZ · CUADERNO 1</span>
+      <span>Aprender por comprensión, no por memorización.</span>
+    </footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
