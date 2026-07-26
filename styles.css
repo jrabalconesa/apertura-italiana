@@ -65,7 +65,8 @@ h1 em, h2 em { color: var(--red); font-weight: 600; }
 .square { position: relative; min-width: 0; min-height: 0; display: grid; place-items: center; font-family: "Segoe UI Symbol", "Arial Unicode MS", sans-serif; font-size: clamp(29px, 5vw, 58px); line-height: 1; }
 .square.light { background: var(--light-square); }
 .square.dark { background: var(--dark-square); }
-.square .piece { filter: drop-shadow(0 2px 0 rgba(0,0,0,.18)); transform: translateY(-2%); }
+.square .piece { width: 82%; height: 82%; display: grid; place-items: center; filter: drop-shadow(0 2px 0 rgba(0,0,0,.18)); transform: translateY(-2%); }
+.square .piece svg { width: 100%; height: 100%; display: block; fill: currentColor; overflow: visible; }
 .square .white-piece { color: #f4f0e3; text-shadow: 0 0 1px #141410, 1px 1px 0 #141410, -1px -1px 0 #141410; }
 .square .black-piece { color: #171713; }
 .square .coordinate { position: absolute; z-index: 2; font-family: var(--sans); font-size: clamp(8px, 1.15vw, 12px); font-weight: 700; line-height: 1; pointer-events: none; }

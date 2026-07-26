@@ -4,7 +4,7 @@ const path = require("path");
 const { exec } = require("child_process");
 const root = __dirname;
 const port = 8000;
-const mime = { ".html":"text/html; charset=utf-8", ".css":"text/css; charset=utf-8", ".js":"text/javascript; charset=utf-8", ".png":"image/png", ".webmanifest":"application/manifest+json; charset=utf-8" };
+const mime = { ".html":"text/html; charset=utf-8", ".css":"text/css; charset=utf-8", ".js":"text/javascript; charset=utf-8", ".png":"image/png", ".svg":"image/svg+xml; charset=utf-8", ".webmanifest":"application/manifest+json; charset=utf-8" };
 const server = http.createServer((request, response) => {
   const requested = decodeURIComponent(request.url.split("?")[0]);
   const relative = requested === "/" ? "index.html" : requested.replace(/^\/+/, "");

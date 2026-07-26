@@ -117,7 +117,14 @@ function renderBoard(element, board, options={}) {
       if (board[squareName]) {
         const piece = document.createElement("span");
         piece.className = `piece ${board[squareName] === board[squareName].toUpperCase() ? "white-piece" : "black-piece"}`;
-        piece.textContent = PIECES[board[squareName]];
+        const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+        icon.setAttribute("viewBox", "0 0 100 100");
+        icon.setAttribute("aria-hidden", "true");
+        icon.setAttribute("focusable", "false");
+        use.setAttribute("href", `assets/chess-pieces-modern.svg#piece-${board[squareName].toUpperCase()}`);
+        icon.appendChild(use);
+        piece.appendChild(icon);
         square.appendChild(piece);
       }
       if (f === 0) {
