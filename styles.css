@@ -232,3 +232,55 @@ footer { min-height: 64px; padding: 0 6vw; border-top: 1px solid var(--line); di
   #challengeDots { flex: 1; min-width: 0; flex-wrap: wrap; }
   #challengeDots i { width: clamp(15px, 5vw, 24px); }
 }
+/* LANDSCAPE ORIENTATION */
+@media (orientation: landscape) and (max-width: 1100px) {
+  .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: auto; }
+  .hero-copy { padding: 52px 5vw 48px; }
+  .hero-copy h1 { font-size: clamp(44px, 6vw, 68px); }
+  .hero-board-wrap { min-height: 500px; }
+  .hero-board-wrap .chessboard { width: min(78%, 460px); }
+  .principles { margin-top: 44px; flex-wrap: wrap; }
+
+  .section-intro, .section-intro.compact { display: flex; align-items: end; padding: 38px 5vw 32px; }
+  .section-intro h1, .section-intro.compact h1 { font-size: clamp(40px, 5vw, 58px); }
+  .section-intro > p { max-width: 38vw; margin-top: 0; }
+
+  .lesson-layout { grid-template-columns: 1fr; }
+  .lesson-index { border-right: 0; border-bottom: 1px solid var(--line); padding: 16px 5vw; overflow-x: auto; scrollbar-width: none; }
+  .lesson-index::-webkit-scrollbar { display: none; }
+  .lesson-index > p { display: none; }
+  #lessonList { display: flex; }
+  .lesson-list-button { width: auto; min-width: 80px; border-bottom: 0; }
+  .lesson-list-button .lesson-name { display: none; }
+  .lesson-stage { grid-template-columns: minmax(280px, .95fr) minmax(280px, 1.05fr); gap: clamp(28px, 5vw, 64px); padding: 36px 5vw 60px; align-items: start; }
+  .lesson-board-column { width: 100%; max-width: 480px; }
+
+  .practice-layout, .game-layout { grid-template-columns: minmax(290px, 1fr) minmax(270px, .9fr); gap: clamp(32px, 6vw, 72px); padding: 36px 6vw 70px; align-items: start; }
+  .practice-board-panel, .game-layout > div:first-child { width: 100%; max-width: 500px; min-width: 0; }
+  .practice-copy, .game-copy, .lesson-copy { min-width: 0; }
+  .practice-progress { align-items: flex-start; }
+  #challengeDots { flex: 1; min-width: 0; flex-wrap: wrap; }
+  #challengeDots i { width: clamp(14px, 2.3vw, 22px); }
+  .practice-copy h2, .game-copy h2, .lesson-copy h2 { font-size: clamp(32px, 4vw, 46px); }
+  .game-tabs { padding-top: 22px; }
+  .home-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); padding-top: 58px; }
+  .manifesto { grid-column: span 2; grid-row: auto; }
+}
+
+@media (orientation: landscape) and (max-height: 600px) and (max-width: 950px) {
+  .topbar { min-height: 68px; height: 68px; padding: 0 22px; flex-wrap: nowrap; gap: 16px; }
+  .brand { min-width: 145px; }
+  .brand small, .progress-pill { display: none; }
+  .topbar nav { order: initial; width: auto; margin-left: auto; overflow: visible; }
+  .topbar .nav-link { padding: 0 10px; font-size: 9px; }
+  .topbar .nav-link.active::after { left: 10px; right: 10px; }
+  .hero-copy { padding: 38px 5vw; }
+  .hero-board-wrap { min-height: 420px; }
+  .hero-lead { font-size: 16px; line-height: 1.45; }
+  .hero-actions { margin-top: 24px; }
+  .principles { margin-top: 30px; }
+  .section-intro, .section-intro.compact { padding-top: 28px; padding-bottom: 26px; }
+  .section-intro > p { line-height: 1.5; }
+  .lesson-stage, .practice-layout, .game-layout { padding-top: 28px; }
+  .board-controls { padding-top: 12px; }
+}
