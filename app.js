@@ -120,6 +120,20 @@ function renderBoard(element, board, options={}) {
         piece.textContent = PIECES[board[squareName]];
         square.appendChild(piece);
       }
+      if (f === 0) {
+        const rankLabel = document.createElement("span");
+        rankLabel.className = "coordinate rank-coordinate";
+        rankLabel.textContent = rank;
+        rankLabel.setAttribute("aria-hidden", "true");
+        square.appendChild(rankLabel);
+      }
+      if (rank === 1) {
+        const fileLabel = document.createElement("span");
+        fileLabel.className = "coordinate file-coordinate";
+        fileLabel.textContent = "abcdefgh"[f];
+        fileLabel.setAttribute("aria-hidden", "true");
+        square.appendChild(fileLabel);
+      }
       if (options.interactive) {
         square.type = "button";
         square.setAttribute("aria-label", `${squareName}${board[squareName] ? ", " + PIECES[board[squareName]] : ""}`);
@@ -244,6 +258,58 @@ function challengeData() {
   return { lesson, moves, target:moves[moves.length-1], board:boardAt(moves, moves.length-1) };
 }
 
+const practiceTransitionDelay = 420;
+
+function pausePracticeTransition() {
+  return new Promise(resolve => setTimeout(resolve, practiceTransitionDelay));
+}
+
+async function nextPracticeChallenge() {
+  const currentIndex = state.challenge;
+  const nextIndex = (currentIndex + 1) % lessons.length;
+  const button = document.getElementById("nextChallenge");
+  button.disabled = true;
+  button.textContent = "Preparando siguiente posición…";
+  document.getElementById("practiceQuestion").textContent = "Avanzando jugada a jugada";
+  document.getElementById("showHint").hidden = true;
+
+  if (nextIndex === 0) {
+    document.getElementById("practiceContext").textContent = "Recorrido completado. Volvemos claramente a la posición inicial para comenzar de nuevo.";
+    renderBoard(document.getElementById("practiceBoard"), parseFen(INITIAL_FEN));
+    await pausePracticeTransition();
+    state.challenge = 0;
+    button.disabled = false;
+    renderPractice();
+    return;
+  }
+
+  const currentMoves = lessons[currentIndex].uci.split(" ");
+  const nextMoves = lessons[nextIndex].uci.split(" ");
+  const nextStartPly = nextMoves.length - 1;
+  let sharedPly = 0;
+  while (sharedPly < currentMoves.length && sharedPly < nextStartPly && currentMoves[sharedPly] === nextMoves[sharedPly]) {
+    sharedPly++;
+  }
+
+  for (let ply = currentMoves.length - 1; ply >= sharedPly; ply--) {
+    const move = currentMoves[ply];
+    document.getElementById("practiceContext").textContent = "Cambiamos de variante retrocediendo una jugada cada vez, sin saltos de posición.";
+    renderBoard(document.getElementById("practiceBoard"), boardAt(currentMoves, ply), {lastMove:[move.slice(0,2), move.slice(2,4)]});
+    await pausePracticeTransition();
+  }
+
+  for (let ply = sharedPly + 1; ply <= nextStartPly; ply++) {
+    const move = nextMoves[ply - 1];
+    document.getElementById("practiceContext").textContent = moveExplanations[move] || "La secuencia avanza exactamente una jugada.";
+    renderBoard(document.getElementById("practiceBoard"), boardAt(nextMoves, ply), {lastMove:[move.slice(0,2), move.slice(2,4)]});
+    await pausePracticeTransition();
+  }
+
+  state.challenge = nextIndex;
+  button.disabled = false;
+  renderPractice();
+}
+
 function renderPractice(resetMessage=true) {
   const {lesson, moves, target, board} = challengeData();
   state.selected = null;
@@ -252,10 +318,15 @@ function renderPractice(resetMessage=true) {
   document.getElementById("practiceLevel").textContent = lesson.stage;
   document.getElementById("practiceQuestion").textContent = "¿Puedes repetir la última jugada?";
   document.getElementById("practiceContext").textContent = `Reconstruye la jugada que conduce a «${lesson.title}». Juegan ${moves.length % 2 ? "blancas" : "negras"}.`;
+  const feedback = document.getElementById("practiceFeedback");
+  feedback.className = "feedback";
+  feedback.innerHTML = '<span>PISTA</span><p id="practiceHint"></p>';
   document.getElementById("practiceHint").textContent = resetMessage ? "Visualiza qué pieza cumple la idea central de esta posición." : lesson.hint;
-  document.getElementById("practiceFeedback").className = "feedback";
   document.getElementById("showHint").hidden = false;
-  document.getElementById("nextChallenge").hidden = true;
+  const nextButton = document.getElementById("nextChallenge");
+  nextButton.hidden = true;
+  nextButton.disabled = false;
+  nextButton.textContent = state.challenge === lessons.length - 1 ? "Reiniciar práctica →" : "Siguiente posición →";
   document.getElementById("streak").textContent = state.streak;
   const dots = document.getElementById("challengeDots");
   dots.innerHTML = lessons.map((_,i)=>`<i class="${i < state.challenge ? "done" : i === state.challenge ? "active" : ""}"></i>`).join("");
@@ -339,7 +410,7 @@ document.getElementById("completeLesson").addEventListener("click",()=>{
   updateProgress(); renderLesson();
 });
 document.getElementById("showHint").addEventListener("click",()=>{document.getElementById("practiceHint").textContent=lessons[state.challenge].hint;});
-document.getElementById("nextChallenge").addEventListener("click",()=>{state.challenge=(state.challenge+1)%lessons.length;renderPractice();});
+document.getElementById("nextChallenge").addEventListener("click", nextPracticeChallenge);
 document.getElementById("gamePrev").addEventListener("click",()=>{state.gamePly--;renderGame();});
 document.getElementById("gameNext").addEventListener("click",()=>{state.gamePly++;renderGame();});
 document.getElementById("gameStart").addEventListener("click",()=>{state.gamePly=0;renderGame();});
