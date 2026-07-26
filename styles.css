@@ -190,3 +190,45 @@ footer { min-height: 64px; padding: 0 6vw; border-top: 1px solid var(--line); di
   footer { display: block; padding-top: 22px; }
   footer span { display: block; margin-bottom: 8px; }
 }
+
+/* RESPONSIVE HARDENING */
+@media (max-width: 580px) {
+  html, body { max-width: 100%; overflow-x: hidden; }
+  .lesson-stage, .practice-layout, .game-layout { grid-template-columns: minmax(0, 1fr); padding-left: 5vw; padding-right: 5vw; }
+  .lesson-stage > *, .practice-layout > *, .game-layout > * { min-width: 0; }
+  .practice-board-panel, .game-layout > div:first-child, .lesson-board-column { width: 100%; max-width: 100%; min-width: 0; }
+  .practice-board-panel .chessboard, .game-layout .chessboard, .lesson-stage .chessboard { width: 100%; max-width: 100%; }
+  .board-controls { gap: clamp(8px, 2.8vw, 16px); }
+  .board-controls span { min-width: 82px; }
+  .board-controls .icon-button { width: 38px; height: 38px; flex: 0 0 38px; }
+  .practice-copy .button { width: 100%; margin: 0 0 9px; }
+  .game-tabs { width: 100%; max-width: 100%; overflow-x: auto; padding-left: 5vw; padding-right: 5vw; scrollbar-width: none; }
+  .game-tabs::-webkit-scrollbar { display: none; }
+  .game-tab { min-width: min(170px, 72vw); }
+  .game-copy h2, .practice-copy h2, .lesson-copy h2 { overflow-wrap: anywhere; }
+}
+
+@media (max-width: 420px) {
+  .topbar { padding-left: 16px; padding-right: 16px; }
+  .brand strong { font-size: 11px; }
+  .progress-pill { font-size: 10px; }
+  .hero-copy { padding-left: 6vw; padding-right: 6vw; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .button { width: 100%; }
+  .section-intro { padding-left: 6vw; padding-right: 6vw; }
+  .section-intro h1, .section-intro.compact h1 { font-size: clamp(38px, 12vw, 48px); }
+  .home-grid { padding-left: 6vw; padding-right: 6vw; }
+  .route-card { padding: 22px; grid-template-columns: auto minmax(0, 1fr) auto; }
+  .route-card h3 { font-size: 22px; }
+}
+/* MOBILE NAVIGATION AND PROGRESS */
+@media (max-width: 580px) {
+  .lesson-index { scrollbar-width: none; }
+  .lesson-index::-webkit-scrollbar { display: none; }
+  .topbar nav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); width: 100%; overflow: visible; }
+  .topbar .nav-link { min-width: 0; padding: 14px 4px; font-size: 9px; text-align: center; }
+  .topbar .nav-link.active::after { left: 4px; right: 4px; }
+  .practice-progress { align-items: flex-start; }
+  #challengeDots { flex: 1; min-width: 0; flex-wrap: wrap; }
+  #challengeDots i { width: clamp(15px, 5vw, 24px); }
+}
