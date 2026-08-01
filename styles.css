@@ -530,14 +530,14 @@ footer { min-height: 64px; padding: 0 6vw; border-top: 1px solid var(--line); di
 
 @media (max-width: 900px) {
   .decision-map { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .variant-shell { grid-template-columns: 1fr; }
-  .variant-index { border-right: 0; border-bottom: 1px solid var(--line); padding: 18px 6vw; overflow-x: auto; scrollbar-width: none; }
+  .variant-shell { grid-template-columns: minmax(0, 1fr); width: 100%; min-width: 0; }
+  .variant-index { width: 100%; max-width: 100%; min-width: 0; border-right: 0; border-bottom: 1px solid var(--line); padding: 18px 6vw; overflow-x: auto; scrollbar-width: none; }
   .variant-index::-webkit-scrollbar { display: none; }
   .variant-index > p { display: none; }
-  #variantList { display: flex; }
+  #variantList { display: flex; width: max-content; min-width: 100%; }
   .variant-list-button { flex: 0 0 190px; border-bottom: 0; border-right: 1px solid var(--line); }
-  .variant-stage { grid-template-columns: 1fr; padding: 45px 8vw 70px; }
-  .variant-board-column { max-width: 600px; margin: auto; }
+  .variant-stage { grid-template-columns: minmax(0, 1fr); width: 100%; min-width: 0; padding: 45px 8vw 70px; }
+  .variant-board-column { width: 100%; max-width: 600px; min-width: 0; margin: auto; }
   .plan-columns { grid-template-columns: 1fr 1fr; }
   .study-grid { grid-template-columns: repeat(2, 1fr); }
   .game-checklist ul { grid-template-columns: repeat(2, 1fr); }
@@ -547,8 +547,9 @@ footer { min-height: 64px; padding: 0 6vw; border-top: 1px solid var(--line); di
   .decision-map { display: flex; overflow-x: auto; padding: 20px 5vw; scrollbar-width: none; }
   .decision-map::-webkit-scrollbar { display: none; }
   .decision-branch { flex: 0 0 min(250px, 76vw); min-height: 132px; }
-  .variant-stage { padding-left: 5vw; padding-right: 5vw; }
-  .variant-board-column { min-width: 0; }
+  .variant-stage { padding: 6px 5vw 22px; }
+  .variant-board-column { width: min(82vw, 320px); max-width: 320px; min-width: 0; margin: 0 auto; }
+  .variant-board-column .chessboard { width: 100%; max-width: 320px; }
   .variant-facts { grid-template-columns: 1fr 1fr; }
   .variant-facts span:last-child { grid-column: span 2; }
   .plan-columns { grid-template-columns: 1fr; }

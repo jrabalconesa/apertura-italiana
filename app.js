@@ -483,6 +483,14 @@ function renderVariantList() {
     button.addEventListener("click", () => selectVariant(index));
     list.appendChild(button);
   });
+  if (window.matchMedia("(max-width: 900px)").matches) {
+    const scroller = list.closest(".variant-index");
+    const activeButton = list.querySelector(".active");
+    if (scroller && activeButton) {
+      const targetLeft = activeButton.offsetLeft - (scroller.clientWidth - activeButton.offsetWidth) / 2;
+      scroller.scrollLeft = Math.max(0, targetLeft);
+    }
+  }
 }
 
 function renderComparison() {
