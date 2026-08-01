@@ -633,6 +633,13 @@ document.getElementById("completeLesson").addEventListener("click",()=>{
 });
 document.getElementById("showHint").addEventListener("click",()=>{document.getElementById("practiceHint").textContent=lessons[state.challenge].hint;});
 document.querySelectorAll(".decision-branch").forEach(button=>button.addEventListener("click",()=>selectVariant(Number(button.dataset.variant))));
+document.querySelectorAll(".mobile-disclosure").forEach(button => button.addEventListener("click", () => {
+  const target = document.getElementById(button.getAttribute("aria-controls"));
+  const open = button.getAttribute("aria-expanded") !== "true";
+  button.setAttribute("aria-expanded", String(open));
+  button.querySelector("b").textContent = open ? "−" : "+";
+  target.classList.toggle("mobile-open", open);
+}));
 document.getElementById("variantFlip").addEventListener("click",()=>{state.variantFlipped=!state.variantFlipped;renderVariant();});
 document.getElementById("recordReview").addEventListener("click",recordVariantReview);
 document.getElementById("variantStart").addEventListener("click",()=>{state.variantPly=0;renderVariant();});

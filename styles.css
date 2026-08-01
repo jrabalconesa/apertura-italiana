@@ -180,6 +180,7 @@ h1 em, h2 em { color: var(--red); font-weight: 600; }
 .variant-facts small, .variant-facts b { display: block; }
 .variant-facts small { margin-bottom: 6px; color: #817d72; font-size: 8px; letter-spacing: .14em; }
 .variant-facts b { font-size: 11px; line-height: 1.35; }
+.mobile-disclosure { display: none; }
 .review-card { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin: 0 0 18px; padding: 15px 17px; border-left: 3px solid var(--olive); background: var(--cream); }
 .review-card span { color: #666b4b; font-size: 9px; font-weight: 600; letter-spacing: .15em; }
 .review-card p { margin: 6px 0 0; color: #5f5c52; font-size: 11px; }
@@ -398,6 +399,29 @@ footer { min-height: 64px; padding: 0 6vw; border-top: 1px solid var(--line); di
   #practica .practice-progress { gap: 10px; margin-top: 7px; }
   #practica #challengeDots { gap: 4px; }
 
+  #variantes .mobile-disclosure {
+    width: 100%;
+    min-height: 38px;
+    padding: 0 10px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--ink);
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    cursor: pointer;
+  }
+  #variantes .mobile-disclosure b { color: var(--red); font-family: var(--serif); font-size: 20px; font-weight: 400; }
+  #variantes .mobile-disclosure[aria-expanded="true"] { border-color: var(--ink); }
+  #variantes .mobile-collapsible:not(.mobile-open) { display: none !important; }
+  #variantes .variant-copy > .mobile-disclosure { margin-top: 6px; }
+  #variantes .section-disclosure { margin: 6px 5vw 0; width: 90vw; }
+  #variantes .section-disclosure + .mobile-collapsible { border-top: 0; }
   /* Variantes */
   #variantes .decision-map { gap: 1px; padding: 6px 5vw; }
   #variantes .decision-branch { flex-basis: min(210px, 66vw); min-height: 94px; padding: 10px 12px; }

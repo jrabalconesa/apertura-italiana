@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=20260801-mobile-scale-3">
+  <link rel="stylesheet" href="styles.css?v=20260801-mobile-accordions-4">
 </head>
 <body>
   <div class="app-shell">
@@ -183,11 +183,13 @@
               <div id="variantNotation" class="notation lesson-sequence" aria-label="Secuencia de la variante"></div>
               <div class="variant-facts" id="variantFacts"></div>
               <div class="review-card"><div><span>REPETICIÓN ESPACIADA</span><p id="nextReviewText"></p></div><button id="recordReview" class="button ghost">Registrar repaso</button></div>
-              <div class="plan-columns">
+              <button class="mobile-disclosure" aria-expanded="false" aria-controls="variantPlans"><span>Planes de blancas y negras</span><b aria-hidden="true">+</b></button>
+              <div id="variantPlans" class="plan-columns mobile-collapsible">
                 <section><span>PLAN DE BLANCAS</span><ul id="whitePlans"></ul></section>
                 <section><span>PLAN DE NEGRAS</span><ul id="blackPlans"></ul></section>
               </div>
-              <div class="concept-check">
+              <button class="mobile-disclosure" aria-expanded="false" aria-controls="variantTraining"><span>Pregunta de entrenamiento</span><b aria-hidden="true">+</b></button>
+              <div id="variantTraining" class="concept-check mobile-collapsible">
                 <span>PREGUNTA DE ENTRENAMIENTO</span><p id="variantQuestion"></p>
                 <div id="variantOptions" class="concept-options"></div>
                 <p id="variantFeedback" class="concept-feedback" aria-live="polite"></p>
@@ -196,12 +198,14 @@
           </div>
         </div>
 
-        <section class="comparison-section">
+        <button class="mobile-disclosure section-disclosure" aria-expanded="false" aria-controls="variantComparison"><span>Comparativa práctica</span><b aria-hidden="true">+</b></button>
+        <section id="variantComparison" class="comparison-section mobile-collapsible">
           <div class="comparison-heading"><div><p class="eyebrow">COMPARATIVA PRÁCTICA</p><h2>Qué estudiar y cuándo</h2></div><p>El Pianissimo es la base. Las demás líneas se incorporan según su frecuencia, riesgo y utilidad formativa.</p></div>
           <div class="comparison-wrap"><table class="comparison-table"><thead><tr><th>Variante</th><th>Riesgo</th><th>Teoría</th><th>Idea central</th><th>Recomendación</th></tr></thead><tbody id="comparisonBody"></tbody></table></div>
         </section>
 
-        <section class="study-section">
+        <button class="mobile-disclosure section-disclosure" aria-expanded="false" aria-controls="variantStudy"><span>Plan de estudio y lista de control</span><b aria-hidden="true">+</b></button>
+        <section id="variantStudy" class="study-section mobile-collapsible">
           <div class="study-heading"><p class="eyebrow">PLAN DE ESTUDIO</p><h2>Cuatro semanas para convertir líneas en decisiones</h2></div>
           <div class="study-grid">
             <article><span>SEMANA 01</span><h3>Fundamentos + Pianissimo</h3><p>Reproduce la línea cinco veces y explica la maniobra Cb1–d2–f1–g3.</p></article>
@@ -248,6 +252,6 @@
       <span>Aprender por comprensión, no por memorización.</span>
     </footer>
   </div>
-  <script src="app.js?v=20260801-mobile-scale-3"></script>
+  <script src="app.js?v=20260801-mobile-accordions-4"></script>
 </body>
 </html>
