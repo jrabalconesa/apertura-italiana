@@ -1,9 +1,9 @@
-const CACHE_NAME = "la-italiana-v8";
+const CACHE_NAME = "la-italiana-v9";
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./styles.css?v=20260801-desktop-type-5",
-  "./app.js?v=20260801-desktop-type-5",
+  "./styles.css?v=20260802-desktop-labels-6",
+  "./app.js?v=20260802-desktop-labels-6",
   "./manifest.webmanifest",
   "./assets/chess-pieces-modern.svg",
   "./assets/favicon-32.png",
