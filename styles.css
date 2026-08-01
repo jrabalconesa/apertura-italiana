@@ -224,6 +224,38 @@ h1 em, h2 em { color: var(--red); font-weight: 600; }
 .game-checklist li { font-family: var(--serif); font-size: 15px; }
 footer { min-height: 64px; padding: 0 6vw; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; color: #777368; font-size: 9px; letter-spacing: .14em; }
 
+/* DESKTOP TYPOGRAPHY AND COMPOSITION */
+@media (min-width: 901px) {
+  .topbar { height: 96px; gap: 46px; }
+  .brand { min-width: 240px; gap: 14px; }
+  .brand-mark { width: 42px; height: 42px; flex-basis: 42px; }
+  .brand strong { font-size: 15px; }
+  .brand small { margin-top: 4px; font-size: 11px; }
+  .nav-link { padding: 0 24px; font-size: clamp(12px, .75vw, 14px); font-weight: 500; }
+  .nav-link.active::after { left: 24px; right: 24px; height: 4px; }
+  .progress-pill { gap: 12px; font-size: 13px; font-weight: 500; }
+  .progress-track { width: 72px; height: 4px; }
+
+  .eyebrow { margin-bottom: 20px; font-size: 12px; }
+  .button { font-size: 11px; }
+  .section-intro { padding-top: 60px; padding-bottom: 40px; }
+  .section-intro.compact { padding-top: 44px; padding-bottom: 28px; }
+  .section-intro > p { max-width: 450px; font-size: 17px; line-height: 1.6; }
+
+  .lesson-index > p, .variant-index > p { font-size: 10px; }
+  .lesson-list-button { font-size: 12px; }
+  .lesson-meta span { font-size: 10px; }
+  .practice-topline { font-size: 11px; }
+  .variant-list-button b { font-size: 16px; }
+  .variant-list-button small { font-size: 10px; }
+
+  .game-tabs { padding-top: 22px; }
+  .game-tab { padding: 18px; }
+  .game-tab span { font-size: 10px; }
+  .game-tab b { margin-top: 7px; font-size: 20px; }
+  .game-layout { padding-top: 28px; }
+  footer { font-size: 10px; }
+}
 @media (max-width: 900px) {
   .topbar { height: auto; min-height: 76px; flex-wrap: wrap; padding: 18px 24px 0; gap: 12px; }
   nav { order: 3; width: 100%; overflow-x: auto; }
@@ -552,6 +584,38 @@ footer { min-height: 64px; padding: 0 6vw; border-top: 1px solid var(--line); di
   .plan-columns { grid-template-columns: 1fr; }
 }
 
+/* DESKTOP TYPOGRAPHY AND COMPOSITION */
+@media (min-width: 901px) {
+  .topbar { height: 96px; gap: 46px; }
+  .brand { min-width: 240px; gap: 14px; }
+  .brand-mark { width: 42px; height: 42px; flex-basis: 42px; }
+  .brand strong { font-size: 15px; }
+  .brand small { margin-top: 4px; font-size: 11px; }
+  .nav-link { padding: 0 24px; font-size: clamp(12px, .75vw, 14px); font-weight: 500; }
+  .nav-link.active::after { left: 24px; right: 24px; height: 4px; }
+  .progress-pill { gap: 12px; font-size: 13px; font-weight: 500; }
+  .progress-track { width: 72px; height: 4px; }
+
+  .eyebrow { margin-bottom: 20px; font-size: 12px; }
+  .button { font-size: 11px; }
+  .section-intro { padding-top: 60px; padding-bottom: 40px; }
+  .section-intro.compact { padding-top: 44px; padding-bottom: 28px; }
+  .section-intro > p { max-width: 450px; font-size: 17px; line-height: 1.6; }
+
+  .lesson-index > p, .variant-index > p { font-size: 10px; }
+  .lesson-list-button { font-size: 12px; }
+  .lesson-meta span { font-size: 10px; }
+  .practice-topline { font-size: 11px; }
+  .variant-list-button b { font-size: 16px; }
+  .variant-list-button small { font-size: 10px; }
+
+  .game-tabs { padding-top: 22px; }
+  .game-tab { padding: 18px; }
+  .game-tab span { font-size: 10px; }
+  .game-tab b { margin-top: 7px; font-size: 20px; }
+  .game-layout { padding-top: 28px; }
+  footer { font-size: 10px; }
+}
 @media (max-width: 900px) {
   .decision-map { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .variant-shell { grid-template-columns: minmax(0, 1fr); width: 100%; min-width: 0; }
