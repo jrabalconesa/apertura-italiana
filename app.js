@@ -665,5 +665,8 @@ const initialView=location.hash.slice(1);
 if (["inicio","aprende","practica","variantes","partidas"].includes(initialView)) showView(initialView);
 
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js"));
+  window.addEventListener("load", async () => {
+    const registration = await navigator.serviceWorker.register("./service-worker.js", {updateViaCache:"none"});
+    registration.update();
+  });
 }
