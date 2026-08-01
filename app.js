@@ -313,26 +313,44 @@ function renderLessonSequence(moves, currentPly, containerId="lessonNotation") {
     container.appendChild(token);
     applyMove(board, move);
   });
-  container.querySelector(".active")?.scrollIntoView({block:"nearest", inline:"nearest"});
+  const activeToken = container.querySelector(".active");
+  if (activeToken) {
+    // Keep the active move visible inside the notation strip without moving
+    // the document viewport (scrollIntoView also scrolled the mobile page).
+    const targetLeft = activeToken.offsetLeft - (container.clientWidth - activeToken.offsetWidth) / 2;
+    container.scrollLeft = Math.max(0, targetLeft);
+  }
+}
+
+function renderLessonStep(updateState) {
+  const scrollPosition = window.scrollY;
+  updateState();
+  renderLesson();
+  // Rebuilding the move strip/index can trigger mobile scroll anchoring.
+  // Restore the reader's exact viewport so the board never jumps.
+  window.scrollTo({top: scrollPosition, left: 0, behavior: "instant"});
+  requestAnimationFrame(() => window.scrollTo({top: scrollPosition, left: 0, behavior: "instant"}));
 }
 
 function previousLessonStep() {
-  if (state.lessonPly > 0) state.lessonPly--;
-  else if (state.lesson > 0) {
-    state.lesson--;
-    state.lessonPly = lessons[state.lesson].uci.split(" ").length;
-  }
-  renderLesson();
+  renderLessonStep(() => {
+    if (state.lessonPly > 0) state.lessonPly--;
+    else if (state.lesson > 0) {
+      state.lesson--;
+      state.lessonPly = lessons[state.lesson].uci.split(" ").length;
+    }
+  });
 }
 
 function nextLessonStep() {
-  const moves = lessons[state.lesson].uci.split(" ");
-  if (state.lessonPly < moves.length) state.lessonPly++;
-  else if (state.lesson < lessons.length - 1) {
-    state.lesson++;
-    state.lessonPly = 0;
-  }
-  renderLesson();
+  renderLessonStep(() => {
+    const moves = lessons[state.lesson].uci.split(" ");
+    if (state.lessonPly < moves.length) state.lessonPly++;
+    else if (state.lesson < lessons.length - 1) {
+      state.lesson++;
+      state.lessonPly = 0;
+    }
+  });
 }
 
 function challengeData() {
