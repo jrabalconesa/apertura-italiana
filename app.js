@@ -636,7 +636,7 @@ renderComparison();
 renderGame();
 updateProgress();
 const initialView=location.hash.slice(1);
-if (["inicio","aprende","variantes","practica","partidas"].includes(initialView)) showView(initialView);
+if (["inicio","aprende","practica","variantes","partidas"].includes(initialView)) showView(initialView);
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js"));

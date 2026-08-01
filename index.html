@@ -21,8 +21,8 @@
       <nav aria-label="Navegación principal">
         <button class="nav-link active" data-view="inicio">Inicio</button>
         <button class="nav-link" data-view="aprende">Aprende</button>
-        <button class="nav-link" data-view="variantes">Variantes</button>
         <button class="nav-link" data-view="practica">Practica</button>
+        <button class="nav-link" data-view="variantes">Variantes</button>
         <button class="nav-link" data-view="partidas">Partidas</button>
       </nav>
       <div class="progress-pill" aria-label="Progreso del curso">
@@ -67,14 +67,14 @@
             <div><p>POSICIONES CLAVE</p><h3>Construye la Italiana jugada a jugada</h3></div>
             <span class="route-arrow">↗</span>
           </article>
-          <article class="route-card" data-go="variantes">
-            <span class="route-number">07</span>
-            <div><p>MAPA DE VARIANTES</p><h3>Reconoce la respuesta rival y elige un plan</h3></div>
-            <span class="route-arrow">↗</span>
-          </article>
           <article class="route-card dark" data-go="practica">
             <span class="route-number">∞</span>
             <div><p>ENTRENAMIENTO</p><h3>Encuentra la siguiente jugada en el tablero</h3></div>
+            <span class="route-arrow">↗</span>
+          </article>
+          <article class="route-card" data-go="variantes">
+            <span class="route-number">07</span>
+            <div><p>MAPA DE VARIANTES</p><h3>Reconoce la respuesta rival y elige un plan</h3></div>
             <span class="route-arrow">↗</span>
           </article>
           <article class="route-card" data-go="partidas">
@@ -116,6 +116,36 @@
               <button id="completeLesson" class="button primary">Marcar como comprendida</button>
             </article>
           </div>
+        </div>
+      </section>
+
+      <section id="practica" class="view">
+        <div class="section-intro compact">
+          <div><p class="eyebrow">ENTRENAMIENTO ACTIVO</p><h1>Tu turno.<br><em>Encuentra el plan.</em></h1></div>
+          <p>Selecciona una pieza y después su casilla de destino. La pista te recuerda la idea, no la respuesta.</p>
+        </div>
+        <div class="practice-layout">
+          <div class="practice-board-panel">
+            <div class="practice-topline">
+              <span id="practiceCode">ITA-P01</span>
+              <span class="streak">RACHA <b id="streak">0</b></span>
+            </div>
+            <div id="practiceBoard" class="chessboard interactive" aria-label="Tablero de práctica"></div>
+          </div>
+          <article class="practice-copy">
+            <p class="eyebrow" id="practiceLevel">FUNDAMENTOS</p>
+            <h2 id="practiceQuestion">¿Cuál es la continuación?</h2>
+            <p id="practiceContext"></p>
+            <div id="practiceFeedback" class="feedback" aria-live="polite">
+              <span>PISTA</span><p id="practiceHint"></p>
+            </div>
+            <button id="showHint" class="button ghost">Mostrar una pista más clara</button>
+            <button id="nextChallenge" class="button primary" hidden>Siguiente posición →</button>
+            <div class="practice-progress">
+              <span>SESIÓN</span>
+              <div id="challengeDots"></div>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -182,36 +212,6 @@
           <div class="game-checklist"><span>LISTA DE CONTROL DURANTE LA PARTIDA</span><ul><li>¿Mi rey está seguro?</li><li>¿Qué amenaza directa tiene mi rival?</li><li>¿Puedo desarrollar una pieza con tempo?</li><li>¿Está preparado d4 o ...d5?</li><li>¿Qué pieza está peor colocada?</li><li>¿Ataco f7 por una razón concreta o por costumbre?</li></ul></div>
         </section>
       </section>
-      <section id="practica" class="view">
-        <div class="section-intro compact">
-          <div><p class="eyebrow">ENTRENAMIENTO ACTIVO</p><h1>Tu turno.<br><em>Encuentra el plan.</em></h1></div>
-          <p>Selecciona una pieza y después su casilla de destino. La pista te recuerda la idea, no la respuesta.</p>
-        </div>
-        <div class="practice-layout">
-          <div class="practice-board-panel">
-            <div class="practice-topline">
-              <span id="practiceCode">ITA-P01</span>
-              <span class="streak">RACHA <b id="streak">0</b></span>
-            </div>
-            <div id="practiceBoard" class="chessboard interactive" aria-label="Tablero de práctica"></div>
-          </div>
-          <article class="practice-copy">
-            <p class="eyebrow" id="practiceLevel">FUNDAMENTOS</p>
-            <h2 id="practiceQuestion">¿Cuál es la continuación?</h2>
-            <p id="practiceContext"></p>
-            <div id="practiceFeedback" class="feedback" aria-live="polite">
-              <span>PISTA</span><p id="practiceHint"></p>
-            </div>
-            <button id="showHint" class="button ghost">Mostrar una pista más clara</button>
-            <button id="nextChallenge" class="button primary" hidden>Siguiente posición →</button>
-            <div class="practice-progress">
-              <span>SESIÓN</span>
-              <div id="challengeDots"></div>
-            </div>
-          </article>
-        </div>
-      </section>
-
       <section id="partidas" class="view">
         <div class="section-intro compact">
           <div><p class="eyebrow">APRENDER DEL EJEMPLO</p><h1>Tres historias.<br><em>Tres maneras de jugar.</em></h1></div>

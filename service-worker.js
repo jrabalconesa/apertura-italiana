@@ -1,4 +1,4 @@
-const CACHE_NAME = "la-italiana-v3";
+const CACHE_NAME = "la-italiana-v4";
 const APP_SHELL = [
   "./",
   "./index.html",
