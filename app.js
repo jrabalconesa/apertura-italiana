@@ -249,13 +249,8 @@ function nextLessonStep() {
   const moves = lessons[state.lesson].uci.split(" ");
   if (state.lessonPly < moves.length) state.lessonPly++;
   else if (state.lesson < lessons.length - 1) {
-    const nextMoves = lessons[state.lesson + 1].uci.split(" ");
-    let sharedPly = 0;
-    while (sharedPly < moves.length && sharedPly < nextMoves.length && moves[sharedPly] === nextMoves[sharedPly]) {
-      sharedPly++;
-    }
     state.lesson++;
-    state.lessonPly = Math.min(sharedPly + 1, nextMoves.length);
+    state.lessonPly = 0;
   }
   renderLesson();
 }
