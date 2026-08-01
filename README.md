@@ -27,8 +27,10 @@ No necesita instalar dependencias ni conectarse a ningún servicio. El progreso 
 ## Contenido
 
 - **Aprende:** recorrido guiado por las posiciones ITA-P01 a ITA-P12.
+- **Variantes:** mapa de decisiones con Pianissimo, Giuoco Piano con d4, Evans, Dos Caballos, Fegatello, Húngara y Blackburne-Shilling.
 - **Practica:** reproducción de la jugada temática sobre el tablero.
 - **Partidas:** visor paso a paso de las tres partidas modelo ITA-M01 a ITA-M03.
+- **Plan de estudio:** comparativa por riesgo y teoría, ejercicios conceptuales y programa de cuatro semanas.
 
 Los archivos originales DOCX, PDF, PGN y CSV se conservan junto a la aplicación como material de referencia.
 

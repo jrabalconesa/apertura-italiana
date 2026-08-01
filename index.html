@@ -21,6 +21,7 @@
       <nav aria-label="Navegación principal">
         <button class="nav-link active" data-view="inicio">Inicio</button>
         <button class="nav-link" data-view="aprende">Aprende</button>
+        <button class="nav-link" data-view="variantes">Variantes</button>
         <button class="nav-link" data-view="practica">Practica</button>
         <button class="nav-link" data-view="partidas">Partidas</button>
       </nav>
@@ -66,12 +67,17 @@
             <div><p>POSICIONES CLAVE</p><h3>Construye la Italiana jugada a jugada</h3></div>
             <span class="route-arrow">↗</span>
           </article>
+          <article class="route-card" data-go="variantes">
+            <span class="route-number">07</span>
+            <div><p>MAPA DE VARIANTES</p><h3>Reconoce la respuesta rival y elige un plan</h3></div>
+            <span class="route-arrow">↗</span>
+          </article>
           <article class="route-card dark" data-go="practica">
             <span class="route-number">∞</span>
             <div><p>ENTRENAMIENTO</p><h3>Encuentra la siguiente jugada en el tablero</h3></div>
             <span class="route-arrow">↗</span>
           </article>
-          <article class="route-card image-card" data-go="partidas">
+          <article class="route-card" data-go="partidas">
             <span class="route-number">03</span>
             <div><p>PARTIDAS MODELO</p><h3>Descubre cómo el plan llega al medio juego</h3></div>
             <span class="route-arrow">↗</span>
@@ -113,6 +119,69 @@
         </div>
       </section>
 
+      <section id="variantes" class="view">
+        <div class="section-intro">
+          <div><p class="eyebrow">MAPA DE DECISIONES</p><h1>Reconoce la respuesta.<br><em>Elige el plan.</em></h1></div>
+          <p>Parte de 1.e4 e5 2.Cf3 Cc6 3.Ac4. La tercera jugada negra define el tipo de partida y las preguntas que debes hacerte.</p>
+        </div>
+
+        <div class="decision-map" aria-label="Respuestas negras principales">
+          <button class="decision-branch active" data-variant="0"><span>3...Ac5</span><b>Juego clásico</b><small>Pianissimo, centro abierto o Evans</small></button>
+          <button class="decision-branch" data-variant="3"><span>3...Cf6</span><b>Dos Caballos</b><small>Contrajuego central y táctica en f7</small></button>
+          <button class="decision-branch" data-variant="5"><span>3...Ae7</span><b>Defensa Húngara</b><small>Espacio contra una posición sólida</small></button>
+          <button class="decision-branch" data-variant="6"><span>3...Cd4?!</span><b>Blackburne-Shilling</b><small>Detectar la trampa antes de capturar</small></button>
+        </div>
+
+        <div class="variant-shell">
+          <aside class="variant-index" aria-label="Variantes del manual"><p>ITINERARIOS</p><div id="variantList"></div></aside>
+          <div class="variant-stage">
+            <div class="variant-board-column">
+              <div class="variant-toolbar"><span>PERSPECTIVA</span><button id="variantFlip">Ver desde negras</button></div>
+              <div id="variantBoard" class="chessboard" aria-label="Tablero de la variante"></div>
+              <div class="board-controls">
+                <button id="variantStart" class="icon-button" aria-label="Inicio de la variante">↤</button>
+                <button id="variantPrev" class="icon-button" aria-label="Jugada anterior de la variante">←</button>
+                <span><b id="variantMoveCounter">0 / 0</b><small id="variantTurnLabel">Posición inicial</small></span>
+                <button id="variantNext" class="icon-button" aria-label="Jugada siguiente de la variante">→</button>
+                <button id="variantEnd" class="icon-button" aria-label="Final de la variante">↦</button>
+              </div>
+            </div>
+            <article class="variant-copy">
+              <div class="lesson-meta"><span id="variantCode"></span><span id="variantLevel"></span></div>
+              <h2 id="variantTitle"></h2>
+              <p id="variantSummary" class="variant-summary"></p>
+              <div id="variantNotation" class="notation lesson-sequence" aria-label="Secuencia de la variante"></div>
+              <div class="variant-facts" id="variantFacts"></div>
+              <div class="review-card"><div><span>REPETICIÓN ESPACIADA</span><p id="nextReviewText"></p></div><button id="recordReview" class="button ghost">Registrar repaso</button></div>
+              <div class="plan-columns">
+                <section><span>PLAN DE BLANCAS</span><ul id="whitePlans"></ul></section>
+                <section><span>PLAN DE NEGRAS</span><ul id="blackPlans"></ul></section>
+              </div>
+              <div class="concept-check">
+                <span>PREGUNTA DE ENTRENAMIENTO</span><p id="variantQuestion"></p>
+                <div id="variantOptions" class="concept-options"></div>
+                <p id="variantFeedback" class="concept-feedback" aria-live="polite"></p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <section class="comparison-section">
+          <div class="comparison-heading"><div><p class="eyebrow">COMPARATIVA PRÁCTICA</p><h2>Qué estudiar y cuándo</h2></div><p>El Pianissimo es la base. Las demás líneas se incorporan según su frecuencia, riesgo y utilidad formativa.</p></div>
+          <div class="comparison-wrap"><table class="comparison-table"><thead><tr><th>Variante</th><th>Riesgo</th><th>Teoría</th><th>Idea central</th><th>Recomendación</th></tr></thead><tbody id="comparisonBody"></tbody></table></div>
+        </section>
+
+        <section class="study-section">
+          <div class="study-heading"><p class="eyebrow">PLAN DE ESTUDIO</p><h2>Cuatro semanas para convertir líneas en decisiones</h2></div>
+          <div class="study-grid">
+            <article><span>SEMANA 01</span><h3>Fundamentos + Pianissimo</h3><p>Reproduce la línea cinco veces y explica la maniobra Cb1–d2–f1–g3.</p></article>
+            <article><span>SEMANA 02</span><h3>Centro abierto</h3><p>Practica cuándo jugar d4 y por qué el enroque precede a la apertura del centro.</p></article>
+            <article><span>SEMANA 03</span><h3>Dos Caballos + Fegatello</h3><p>Resuelve posiciones buscando primero jaques, capturas y amenazas.</p></article>
+            <article><span>SEMANA 04</span><h3>Evans, Húngara y trampas</h3><p>Juega seis partidas lentas y analiza solamente los primeros quince movimientos.</p></article>
+          </div>
+          <div class="game-checklist"><span>LISTA DE CONTROL DURANTE LA PARTIDA</span><ul><li>¿Mi rey está seguro?</li><li>¿Qué amenaza directa tiene mi rival?</li><li>¿Puedo desarrollar una pieza con tempo?</li><li>¿Está preparado d4 o ...d5?</li><li>¿Qué pieza está peor colocada?</li><li>¿Ataco f7 por una razón concreta o por costumbre?</li></ul></div>
+        </section>
+      </section>
       <section id="practica" class="view">
         <div class="section-intro compact">
           <div><p class="eyebrow">ENTRENAMIENTO ACTIVO</p><h1>Tu turno.<br><em>Encuentra el plan.</em></h1></div>
