@@ -138,8 +138,47 @@ const moveExplanations = {
   f6d5: "Las negras recapturan con el caballo, que queda centralizado y presiona c3, e3 y f4.",
   f3e5: "Las blancas aprovechan la apertura del centro y colocan el caballo en una casilla activa.",
   c6e5: "Las negras eliminan el caballo central blanco y reducen su presión antes de que se consolide.",
-  e1e5: "Las blancas recapturan con la torre, que entra activamente en la quinta fila y completa la transición al medio juego."
+  e1e5: "Las blancas recapturan con la torre, que entra activamente en la quinta fila y completa la transición al medio juego.",
+  d1d2: "Las blancas conectan las torres y rompen la clavada del caballo de f3, aunque deben calcular la presión acumulada sobre e4.",
+  c3e4: "Las blancas eliminan al caballo centralizado con una pieza desarrollada, pero permiten la entrada táctica de la torre negra en e4.",
+  e8e4: "Las negras recuperan en e4 con la torre y penetran en la cuarta fila; la actividad es fuerte, pero la torre queda expuesta a una secuencia forzada.",
+  c4f7: "Las blancas sacrifican temporalmente el alfil con jaque para desviar al rey, debilitar su refugio y preparar un ataque doble sobre la torre de e4.",
+  g8f7: "Las negras aceptan el alfil y conservan ventaja material momentánea, a costa de exponer el rey a nuevos jaques.",
+  f3g5: "El caballo entra con jaque y, al mismo tiempo, incorpora e4 a su radio de acción; la doble función hace posible recuperar la torre.",
+  f7g8: "El rey negro regresa a g8 para salir del jaque, pero la retirada no resuelve la pérdida de la torre avanzada.",
+  g5e4: "Las blancas culminan la combinación capturando la torre: los tiempos de jaque permitieron recuperar material sin dar defensa al rival.",
+  d1h5: "La dama crea una batería inmediata contra f7, pero sale antes de tiempo y se convierte en objetivo, retrasando el desarrollo y el enroque.",
+  g7g6: "Las negras atacan la dama con tempo y neutralizan la amenaza sobre f7; aceptan debilitar casillas oscuras a cambio de acelerar la iniciativa.",
+  h5f3: "La dama mantiene la presión sobre f7 desde f3, aunque consume un segundo tiempo y queda expuesta a avances centrales como ...d5 y ...e4.",
+  d7d5: "Las negras rompen en el centro con el rey ya seguro y mayor desarrollo, atacando simultáneamente e4 y el alfil de c4.",
+  e5e4: "El avance negro gana espacio y ataca la dama de f3 con tempo; transforma la ventaja de desarrollo en una amenaza concreta.",
+  d3e4: "Las blancas eliminan el peón avanzado con el peón de d3, pero dejan la casilla e4 disponible para una pieza negra activa.",
+  f6e4: "El caballo negro se instala en e4 con amenazas sobre c3 y f2, aprovechando que las piezas blancas aún no están coordinadas.",
+  f3e4: "La dama blanca captura el caballo central, pero queda alineada con la torre negra en la columna e abierta.",
+  e6d5: "El alfil negro recaptura en d5 y se centraliza con gran alcance sobre e4, g2 y c6, activándose al abrirse la posición."
 };
+
+const lessonMoveContexts = {
+  "ITA-P01": "En P01 importa el efecto fundacional: ambos peones fijan el territorio central y determinan qué piezas podrán desarrollarse con libertad.",
+  "ITA-P02": "En P02 la jugada se valora por su doble función: mejorar una pieza y, al mismo tiempo, crear o responder a una amenaza sobre e5.",
+  "ITA-P03": "En P03 cada desarrollo contribuye a la posición italiana: actividad sobre f7 o f2, control de d4 y preparación del enroque.",
+  "ITA-P04": "En P04 el criterio es la seguridad: las piezas se movilizan de modo que la futura apertura del centro no encuentre al rey en e1 o e8.",
+  "ITA-P05": "En P05 toda la secuencia explica por qué c3 es una jugada de preparación: sostiene d4 y define cómo podrán recapturar las blancas.",
+  "ITA-P06": "En P06 la prioridad es la ruptura d4: desarrollo, enroque y soporte central se coordinan para cuestionar e5 en el momento adecuado.",
+  "ITA-P07": "En P07 el centro ya se ha transformado; cada movimiento debe juzgarse por la actividad que obtiene en las nuevas líneas abiertas.",
+  "ITA-P08": "En P08 la cuestión técnica es la coordinación: clavadas, apoyos sobre e4 y torres enfrentadas convierten la presión posicional en cálculo.",
+  "ITA-P09": "En P09 d3 mantiene la estructura cerrada; por eso c3 y el desarrollo posterior preparan d4 sin precipitar la apertura del centro.",
+  "ITA-P10": "En P10 el centro estable permite invertir tiempos en la ruta Cb1-d2-f1-g3, mejorando el caballo sin abandonar la defensa de e4.",
+  "ITA-P11": "En P11 las rupturas d4 y ...d5 cambian la naturaleza de la posición: las maniobras previas dejan paso a capturas y líneas forzadas.",
+  "ITA-P12": "En P12 la secuencia muestra la transición al medio juego: los cambios centrales culminan con una torre activa en e5 y una nueva evaluación."
+};
+
+function lessonMoveExplanation(lesson, move) {
+  const technical = moveExplanations[move];
+  if (!technical) return lesson.explanation;
+  return `${technical} ${lessonMoveContexts[lesson.code]}`;
+}
+
 const state = {
   completed: new Set(JSON.parse(localStorage.getItem("italiana-progress") || "[]")),
   lesson: 0, lessonPly: 0, challenge: 0, selected: null, streak: 0,
@@ -266,11 +305,11 @@ function renderLesson() {
   document.getElementById("lessonStageLabel").textContent = lesson.stage;
   document.getElementById("lessonTitle").textContent = lesson.title;
   renderLessonSequence(moves, state.lessonPly);
-  document.getElementById("lessonExplanation").textContent = lesson.explanation;
   const activeMove = state.lessonPly ? moves[state.lessonPly - 1] : null;
   const activeSide = state.lessonPly % 2 === 1 ? "BLANCAS" : "NEGRAS";
-  document.getElementById("lessonIdeaLabel").textContent = activeMove ? `IDEA DE LAS ${activeSide}` : "IDEA CLAVE";
-  document.getElementById("lessonIdea").textContent = activeMove ? (moveExplanations[activeMove] || lesson.idea) : lesson.idea;
+  document.getElementById("lessonExplanation").textContent = activeMove ? lessonMoveExplanation(lesson, activeMove) : lesson.explanation;
+  document.getElementById("lessonIdeaLabel").textContent = activeMove ? `LECTURA TRAS LA JUGADA DE ${activeSide}` : "IDEA CLAVE";
+  document.getElementById("lessonIdea").textContent = lesson.idea;
   document.getElementById("lessonMoveCounter").textContent = `${state.lessonPly} / ${moves.length}`;
   document.getElementById("lessonTurnLabel").textContent = state.lessonPly ? `Última: ${formatMove(moves[state.lessonPly-1])}` : "Posición inicial";
   document.getElementById("lessonPrev").disabled = state.lessonPly === 0 && state.lesson === 0;
@@ -608,7 +647,8 @@ function renderGame() {
   document.getElementById("gameStart").disabled = state.gamePly===0;
   document.getElementById("gameNext").disabled = state.gamePly===game.moves.length;
   document.getElementById("gameEnd").disabled = state.gamePly===game.moves.length;
-  document.getElementById("gameComment").textContent = game.comments[state.gamePly-1] || (state.gamePly ? "Observa qué pieza mejoró y qué cambió en el centro." : "Avanza por la partida para descubrir las ideas clave.");
+  const playedMove = state.gamePly ? game.moves[state.gamePly-1] : null;
+  document.getElementById("gameComment").textContent = game.comments[state.gamePly-1] || (playedMove ? moveExplanations[playedMove] : null) || "Avanza por la partida para descubrir las ideas clave.";
   const sheet = document.getElementById("moveSheet");
   sheet.innerHTML = "";
   game.san.forEach((san,i)=>{
